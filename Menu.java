@@ -6,6 +6,7 @@ public class Menu{
 
         do {
             try {
+                //Menú
                 System.out.println("1. Seleccionar carpeta");
                 System.out.println("2. Lectura de fichero");
                 System.out.println("3. Convertir");
@@ -36,14 +37,23 @@ public class Menu{
                         break;
                 }
             
-            System.out.println("Ruta de la carpeta: " /*+ rutaCarpeta*/);
-            System.out.println("Contenido de la carpeta: ");
-            System.out.println(/*+ contenidoCarpeta*/);
-            System.out.println("Fichero seleccionado: " /*+ fichero*/);
+                //Información a mostrar (se muestra siempre)
+                System.out.println("Ruta de la carpeta: " /*+ rutaCarpeta*/);
+                System.out.println("Contenido de la carpeta: ");
+                System.out.println(/*+ contenidoCarpeta*/);
+                System.out.println("Fichero seleccionado: " /*+ fichero*/);
                 
             } catch (Exception e) {
                 System.out.println("Error: " + e.getMessage());
                 sc.next();
+            } finally {
+                if (sc != null) {
+                    try {
+                        sc.close();
+                    } catch (Exception e) {
+                        System.out.println("Error: " + e.getMessage());
+                    }
+                }
             }
         } while (true);
     }
