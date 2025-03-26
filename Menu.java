@@ -1,22 +1,37 @@
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Scanner;
-/*Mostrará un menú por consola con las siguientes opciones:
-
-Seleccionar carpeta: Permitirá la entrada por teclado de una ruta a una carpeta en el sistema de ficheros. 
-Deberá controlarse la existencia de la ruta dada.
-
-Lectura de fichero: Permitirá la entrada por teclado de un nombre de un fichero dentro de la carpeta seleccionada. 
-Deberá comprobarse la existencia o no del archivo. El programa entenderá el formato del fichero mediante la extensión del mismo. 
-Tras su lectura, el programa deberá tener almacenado en las estructuras de datos correspondientes la información del fichero.
-Debe ser posible seleccionar esta opción múltiples veces durante una misma ejecución del programa, 
-eliminando el contenido presente en las estructuras de datos antes de proceder a una nueva lectura.
-
-Conversión a: Permitirá seleccionar uno de los tres formatos siguientes: csv, json y xml. 
-Posteriormente, pedirá un nombre para el fichero de salida, al que añadirá la extensión correspondiente. 
-Finalmente, exportará la información contenida en las estructuras de datos mencionadas en el apartado anterior 
-en el formato seleccionado. Esta opción solo se permitirá tras haber seleccionado un fichero.
-
-Salir: Cierra el programa. */
 public class Menu{
+    private static Scanner sc = new Scanner(System.in);
+    private static String rutaCarpeta = "";
+    private static String ficheroSeleccionado = "";
+
+    public static void mostrarMenu() {
+        System.out.println("Menú:");
+        System.out.println("1. Seleccionar carpeta");
+        System.out.println("2. Lectura de fichero");
+        System.out.println("3. Conversión");
+        System.out.println("4. Salir");
+        System.out.print("Seleccione una opción: ");
+        System.out.println("");
+        
+        //Información a mostrar (se muestra siempre)
+        System.out.println("Carpeta seleccionada: " + rutaCarpeta);
+        System.out.println("Contenido de la carpeta: " /*+ contenidoCarpeta*/);
+        System.out.println("Fichero seleccionado: " + ficheroSeleccionado);
+    }
+
+    public static void seleccionarCarpeta() {
+        System.out.print("Ingrese la ruta de la carpeta: ");
+        String ruta = sc.nextLine();
+        if (Files.isDirectory(Paths.get(ruta))) {
+            rutaCarpeta = ruta;
+            System.out.println("Carpeta seleccionada: " + rutaCarpeta);
+        } else {
+            System.out.println("La carpeta no existe.");
+        }
+    }
+
     public static void main (String[] args){ 
         Scanner sc = new Scanner(System.in);
         int opcion;
@@ -53,13 +68,6 @@ public class Menu{
                         System.out.println("Opción no valida, prueba otra vez");
                         break;
                 }
-                /*La interfaz mostrará, además del menú, la siguiente información:
-
-                Ruta de la carpeta seleccionada.
-
-                Contenido de la carpeta seleccionada.
-
-                Fichero seleccionado. */
             
                 //Información a mostrar (se muestra siempre)
                 System.out.println("Ruta de la carpeta: " /*+ rutaCarpeta*/);
